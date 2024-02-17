@@ -32,5 +32,8 @@ public class OrderDto {
     //add this to get user information with order
     private  UserDto user;
 
+    private String razorpayOrderId;
+    private String paymentId;
+
 
 }

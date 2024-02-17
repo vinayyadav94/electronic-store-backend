@@ -41,6 +41,9 @@ public class Order {
 
     private Date deliveredDate;
 
+    private String razorpayOrderId;
+    private String paymentId;
+
     //user
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")

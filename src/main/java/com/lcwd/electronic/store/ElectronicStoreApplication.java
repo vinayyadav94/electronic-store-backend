@@ -48,34 +48,34 @@ public class ElectronicStoreApplication implements CommandLineRunner {
             Role role_normal = Role.builder().roleId(role_normal_id).roleName("ROLE_NORMAL").build();
 
 
-            User adminUser = User.builder()
-                    .name("Admin")
-                    .email("admin@gmail.com")
-                    .password(passwordEncoder.encode("admin@123"))
-                    .gender("Male")
-                    .imageName("default.png")
-                    .roles(Set.of(role_admin, role_normal))
-                    .userId(UUID.randomUUID().toString())
-                    .about("I am admin User")
-                    .build();
-
-            User normalUser = User.builder()
-                    .name("User")
-                    .email("user@gmail.com")
-                    .password(passwordEncoder.encode("user@123"))
-                    .gender("Male")
-                    .imageName("default.png")
-                    .roles(Set.of(role_admin, role_normal))
-                    .userId(UUID.randomUUID().toString())
-                    .about("I am Normal User")
-                    .build();
+//            User adminUser = User.builder()
+//                    .name("admin")
+//                    .email("admin@gmail.com")
+//                    .password(passwordEncoder.encode("admin123"))
+//                    .gender("Male")
+//                    .imageName("default.png")
+//                    .roles(Set.of(role_admin, role_normal))
+//                    .userId(UUID.randomUUID().toString())
+//                    .about("I am admin User")
+//                    .build();
+//
+//            User normalUser = User.builder()
+//                    .name("durgesh")
+//                    .email("durgesh@gmail.com")
+//                    .password(passwordEncoder.encode("durgesh123"))
+//                    .gender("Male")
+//                    .imageName("default.png")
+//                    .roles(Set.of(role_normal))
+//                    .userId(UUID.randomUUID().toString())
+//                    .about("I am Normal User")
+//                    .build();
 
             repository.save(role_admin);
             repository.save(role_normal);
 
 
-            userRepository.save(adminUser);
-            userRepository.save(normalUser);
+            //userRepository.save(adminUser);
+            //userRepository.save(normalUser);
 
         } catch (Exception e) {
             e.printStackTrace();

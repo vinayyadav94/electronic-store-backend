@@ -43,6 +43,12 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
+    public OrderDto getOrder(String orderId) {
+        Order order = this.orderRepository.findById(orderId).orElseThrow(() -> new ResourceNotFoundException("order not found!"));
+        return this.modelMapper.map(order, OrderDto.class);
+    }
+
+    @Override
     public OrderDto createOrder(CreateOrderRequest orderDto) {
 
         String userId = orderDto.getUserId();
@@ -139,6 +145,21 @@ public class OrderServiceImpl implements OrderService {
         order.setPaymentStatus(request.getPaymentStatus());
         order.setOrderStatus(request.getOrderStatus());
         order.setDeliveredDate(request.getDeliveredDate());
+        Order updatedOrder = orderRepository.save(order);
+        return modelMapper.map(updatedOrder, OrderDto.class);
+    }
+
+    @Override
+    public OrderDto updateOrder(String orderId, OrderDto request) {
+        Order order = orderRepository.findById(orderId).orElseThrow(() -> new BadApiRequestException("Invalid update data"));
+        order.setBillingName(request.getBillingName());
+        order.setBillingPhone(request.getBillingPhone());
+        order.setBillingAddress(request.getBillingAddress());
+        order.setPaymentStatus(request.getPaymentStatus());
+        order.setOrderStatus(request.getOrderStatus());
+        order.setDeliveredDate(request.getDeliveredDate());
+        order.setRazorpayOrderId(request.getRazorpayOrderId());
+        order.setPaymentId(request.getPaymentId());
         Order updatedOrder = orderRepository.save(order);
         return modelMapper.map(updatedOrder, OrderDto.class);
     }
